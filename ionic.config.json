@@ -1,0 +1,7 @@
+{
+  "name": "SABAL",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}

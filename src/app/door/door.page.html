@@ -1,0 +1,25 @@
+<ion-toolbar>
+  <ion-buttons slot="start">
+    <ion-menu-button></ion-menu-button>
+  </ion-buttons>
+  <ion-title>Door</ion-title>
+</ion-toolbar>
+
+<ion-content padding fullscreen>
+    <ion-item>
+      Manual
+      <ion-toggle [(ngModel)]="agreements" [checked]="agreements"></ion-toggle>
+      Auto
+      <ion-button slot="end" [disabled]="!agreements" (click)="setDateTime()">Set Date/time</ion-button>
+    </ion-item>
+
+    <ion-item class="margin-top-100">
+      <img *ngIf="!unlocked" class="center-img" (click)="light2value=true" src="../../assets/icon/home.png" />
+      <img *ngIf="unlocked" class="center-img" (click)="light2value=false" src="../../assets/icon/away.png" />
+    </ion-item>
+
+  <p text-center>
+    <unlocker (unlocked)="unlockedHandler($event)"></unlocker>
+  </p>
+
+</ion-content>

@@ -1,0 +1,1 @@
+<input #unlock type="range" [ngClass]="slideContent" (touchmove)="updateValue()" [(ngModel)]="theRange" max="100" (touchend)="checkUnlock($event)" (mouseout)="checkUnlock($event)">

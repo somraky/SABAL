@@ -1,0 +1,156 @@
+<script>
+  function printForm(ev) {
+  }
+  function toggleBoolean(id, prop) {
+    var el = document.getElementById(id);
+    var isTrue = el[prop] ? false : true;
+    el[prop] = isTrue;
+  }
+</script>
+
+<ion-toolbar>
+  <ion-buttons slot="start">
+    <ion-menu-button></ion-menu-button>
+  </ion-buttons>
+  <ion-title>Light Control</ion-title>
+</ion-toolbar>
+
+<ion-content fullscreen padding>
+  <ion-grid>
+    <ion-row>
+      <ion-col class="col-b-1">
+        Light1
+        <img *ngIf="!lightvalue[1]" (click)="updatelight(1, true)" src="../../assets/icon/off_light.png" />
+        <img *ngIf="lightvalue[1]" (click)="updatelight(1, false)" src="../../assets/icon/on_light.png" />
+        <ion-button *ngIf="!light1value" color="tertiary" size="small" (click)="setOnLight(1)">set on time {{ontime[1]}}</ion-button>
+        <ion-button *ngIf="light1value" color="tertiary" size="small" (click)="setOffLight(1)">set off time {{offtime[1]}}</ion-button>
+      </ion-col>
+      <ion-col class="col-b-2">
+        Light2
+        <img *ngIf="!lightvalue[2]" (click)="updatelight(2, true)" src="../../assets/icon/off_light.png" />
+        <img *ngIf="lightvalue[2]" (click)="updatelight(2, false)" src="../../assets/icon/on_light.png" />
+        <ion-button *ngIf="!light2value" color="tertiary" size="small" (click)="setOnLight(2)">set on time {{ontime[2]}}</ion-button>
+        <ion-button *ngIf="light2value" color="tertiary" size="small" (click)="setOffLight(2)">set off time {{offtime[2]}}</ion-button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col class="col-b-3">
+        Light3
+        <img *ngIf="!lightvalue[3]" (click)="updatelight(3, true)" src="../../assets/icon/off_light.png" />
+        <img *ngIf="lightvalue[3]" (click)="updatelight(3, false)" src="../../assets/icon/on_light.png" />
+        <ion-button *ngIf="!light3value" color="tertiary" size="small" (click)="setOnLight(3)">set on time {{ontime[3]}}</ion-button>
+        <ion-button *ngIf="light3value" color="tertiary" size="small" (click)="setOffLight(3)">set off time {{offtime[3]}}</ion-button>
+      </ion-col>
+      <ion-col class="col-b-4">
+        Light4
+        <img *ngIf="!lightvalue[4]" (click)="updatelight(4, true)" src="../../assets/icon/off_light.png" />
+        <img *ngIf="lightvalue[4]" (click)="updatelight(4, false)" src="../../assets/icon/on_light.png" />
+        <ion-button *ngIf="!light4value" color="tertiary" size="small" (click)="setOnLight(4)">set on time {{ontime[4]}}</ion-button>
+        <ion-button *ngIf="light4value" color="tertiary" size="small" (click)="setOffLight(4)">set off time {{offtime[4]}}</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <!--<ion-card>
+    <ion-card-header>
+      <ion-item>
+        <h3 class="status">Set Time</h3>
+      </ion-item>
+    </ion-card-header>
+    <ion-card-header (click)="toggleSection(0)">
+      <ion-item>
+        <ion-icon name="md-bulb" slot="start"></ion-icon>
+        <ion-label>Light 1</ion-label>
+        <ion-icon item-right name="sunny" color="success" *ngIf="light1value"></ion-icon>
+        <ion-icon item-right name="arrow-dropright" *ngIf="!lightItems[0].open"></ion-icon>
+        <ion-icon item-right name="arrow-dropdown" *ngIf="lightItems[0].open"></ion-icon>
+      </ion-item>
+    </ion-card-header>
+    <ion-card-content *ngIf="lightItems[0].open">
+      <ion-item>
+        <ion-label>On time</ion-label>
+        <ion-datetime display-format="HH:mm" [(ngModel)]="notifyTime" (ionChange)="timeChange($event)"></ion-datetime>
+      </ion-item>
+      <ion-item>
+        <ion-label>Off time</ion-label>
+        <ion-datetime display-format="HH:mm"></ion-datetime>
+      </ion-item>
+      <p aria-hidden="true" text-center>
+        <ion-button (click)="addNotifications()" size="small" shape="round" color="danger" fill="outline">Reset Time</ion-button>
+      </p>
+    </ion-card-content>
+
+    <ion-card-header (click)="toggleSection(1)">
+      <ion-item>
+        <ion-icon name="md-bulb" slot="start"></ion-icon>
+        <ion-label>Light 2</ion-label>
+        <ion-icon item-right name="sunny" color="success" *ngIf="light2value"></ion-icon>
+        <ion-icon item-right name="arrow-dropright" *ngIf="!lightItems[1].open"></ion-icon>
+        <ion-icon item-right name="arrow-dropdown" *ngIf="lightItems[1].open"></ion-icon>
+      </ion-item>
+    </ion-card-header>
+    <ion-card-content *ngIf="lightItems[1].open">
+      <ion-item>
+        <ion-label>On time</ion-label>
+        <ion-datetime display-format="HH:mm" [(ngModel)]="light2OnTime" (ionChange)="updateDate2()"></ion-datetime>
+      </ion-item>
+      <ion-item>
+        <ion-label>Off time</ion-label>
+        <ion-datetime display-format="HH:mm" [(ngModel)]="light2OffTime" (ionChange)="updateDate2()"></ion-datetime>
+      </ion-item>
+      <p aria-hidden="true" text-center>
+          <ion-button size="small" shape="round" color="danger" fill="outline">Reset Time</ion-button>
+        </p>
+    </ion-card-content>
+
+    <ion-card-header (click)="toggleSection(2)">
+      <ion-item>
+        <ion-icon name="md-bulb" slot="start"></ion-icon>
+        <ion-label>Light 3</ion-label>
+        <ion-icon item-right name="sunny" color="success" *ngIf="light3value"></ion-icon>
+        <ion-icon item-right name="arrow-dropright" *ngIf="!lightItems[2].open"></ion-icon>
+        <ion-icon item-right name="arrow-dropdown" *ngIf="lightItems[2].open"></ion-icon>
+      </ion-item>
+    </ion-card-header>
+    <ion-card-content *ngIf="lightItems[2].open">
+      <ion-item>
+        <ion-label>On time</ion-label>
+        <ion-datetime display-format="HH:mm"></ion-datetime>
+      </ion-item>
+      <ion-item>
+        <ion-label>Off time</ion-label>
+        <ion-datetime display-format="HH:mm"></ion-datetime>
+      </ion-item>
+      <p aria-hidden="true" text-center>
+          <ion-button size="small" shape="round" color="danger" fill="outline">Reset Time</ion-button>
+        </p>
+    </ion-card-content>
+
+    <ion-card-header (click)="toggleSection(3)">
+      <ion-item>
+        <ion-icon name="md-bulb" slot="start"></ion-icon>
+        <ion-label>Light 4</ion-label>
+        <ion-icon item-right name="sunny" color="success" *ngIf="light4value"></ion-icon>
+        <ion-icon item-right name="arrow-dropright" *ngIf="!lightItems[3].open"></ion-icon>
+        <ion-icon item-right name="arrow-dropdown" *ngIf="lightItems[3].open"></ion-icon>
+      </ion-item>
+    </ion-card-header>
+    <ion-card-content *ngIf="lightItems[3].open">
+      <ion-item>
+        <ion-label>On time</ion-label>
+        <ion-datetime display-format="HH:mm"></ion-datetime>
+      </ion-item>
+      <ion-item>
+        <ion-label>Off time</ion-label>
+        <ion-datetime display-format="HH:mm"></ion-datetime>
+      </ion-item>
+      <p aria-hidden="true" text-center>
+          <ion-button size="small" shape="round" color="danger" fill="outline">Reset Time</ion-button>
+        </p>
+    </ion-card-content>
+  </ion-card>-->
+
+  <p aria-hidden="true" text-center>
+    <ion-button (click)="alllighttoggle()" color="success">Toggle All Light</ion-button>
+  </p>
+</ion-content>

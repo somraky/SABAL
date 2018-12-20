@@ -1,0 +1,68 @@
+
+
+    input[type="range"] {
+        pointer-events: none;
+        width: 300px;
+        -webkit-appearance: none;
+        border-radius: 10px;
+        padding: 5px;
+        transition: opacity 0.5s;
+        position: relative;
+        border-radius: 999px;
+    }
+    
+    input[type="range"]::-webkit-slider-thumb {
+        pointer-events: auto;
+        -webkit-appearance: none;
+        border-radius: 10px;
+        background: -webkit-linear-gradient(top, #fafafa 0%,#dedede 50%,#cfcfcf 51%,#a3a3a3 100%);
+        z-index: 1;
+        width: 50px;
+        position: relative;
+        height: 50px;
+        border-radius: 50%;
+    }
+    
+    input[type="range"]:before {
+        position: absolute;
+        top: 14px;
+        z-index: 1;
+        font-size: 28px;
+        white-space: nowrap;
+        overflow: hidden;
+    }
+
+    .arm-content{
+        background: -webkit-gradient(linear, 0 0, 0 bottom, from(rgb(var(--redValue), var(--greenValue), 0)), to(rgb(var(--redValue2), var(--greenValue2),0)));
+    }
+    .arm-content:before{
+        left: var(--armLeft);
+        color: #fff;
+        tab-size: 16;
+        content: "Slide to Disarmed - -- - Slide to Armed";
+    }
+    
+    .disarm-content{
+        background: -webkit-gradient(linear, 0 0, 0 bottom, from(rgb(var(--redValue), var(--greenValue), 0)), to(rgb(var(--redValue2), var(--greenValue2),0)));
+    }
+    .disarm-content:before{
+        right: var(--disarmRight);
+        color: #fff;
+        content: "Slide to Disarmed - -- - Slide to Armed";
+    }
+    
+    
+    input[type="range"]::-webkit-slider-thumb:before {
+        color: #8a8a8a;
+        position: absolute;
+        left: 5px;
+        top: -10px;
+        z-index: 1;
+        font-size: 56px;
+        font-weight: bold;
+    }
+
+    ::-moz-range-track {
+        height: 40px;
+        background: #ddd;
+    }

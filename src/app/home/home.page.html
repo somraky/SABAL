@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-toolbar color="dark">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button>
+        <ion-icon name="settings"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>SABAL</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding fullscreen>
+  <div class="spacer-100"></div>
+  <div class="container">
+    <a class="button-circle circle" routerLink="/light">
+      <img src="../../assets/icon/light.png" />
+    </a>
+  </div>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <a class="button-circle circle" routerLink="/smoke"><img src="../../assets/icon/smoke.png" /></a>
+      </ion-col>
+      <ion-col>
+        <a class="button-circle circle" routerLink="/door"><img src="../../assets/icon/door.png" /></a>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

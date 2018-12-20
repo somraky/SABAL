@@ -1,0 +1,40 @@
+<ion-toolbar>
+  <ion-buttons slot="start">
+    <ion-menu-button></ion-menu-button>
+  </ion-buttons>
+  <ion-title>Smoke Alarm</ion-title>
+</ion-toolbar>
+
+<ion-content fullscreen padding>
+  <div class="icon">{{submessage}}</div>
+  <ion-card>
+    <ion-card-header [color]="isDanger ? 'danger' : 'success'">
+      <h1 class="status">Status : {{status}}</h1>
+    </ion-card-header>
+  </ion-card>
+  <ion-card>
+    <ion-list>
+      <ion-item>
+        <h4>Settings</h4>
+      </ion-item>
+      <ion-list-header padding>
+        Sensor
+        <ion-toggle item-right color="primary" [(ngModel)]="senserOn" [checked]="senserOn"></ion-toggle>
+      </ion-list-header>
+      <ion-list-header (click)="toogleSetting()" padding>
+        Secured Range
+        <ion-label color="danger" *ngIf="!securedRangeOpen">
+        {{rangeValue}}
+        </ion-label>
+        <h2>
+          <ion-icon item-right name="arrow-dropright" *ngIf="!securedRangeOpen"></ion-icon>
+          <ion-icon item-right name="arrow-dropdown" *ngIf="securedRangeOpen"></ion-icon>
+        </h2>
+      </ion-list-header>
+      <ion-item *ngIf="securedRangeOpen">
+        <ion-range min="0" max="200" pin="true" color="secondary" [(ngModel)]="rangeValue"></ion-range>
+        <div slot="end">{{rangeValue}}</div>
+      </ion-item>
+    </ion-list>
+  </ion-card>
+</ion-content>
