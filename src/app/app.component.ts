@@ -18,7 +18,7 @@ export class AppComponent {
     {
       title: 'Smoke',
       url: '/smoke',
-      icon: 'list'
+      icon: 'flame'
     },
     {
       title: 'Light',

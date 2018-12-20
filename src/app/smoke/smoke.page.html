@@ -6,9 +6,9 @@
 </ion-toolbar>
 
 <ion-content fullscreen padding>
-  <div class="icon">{{submessage}}</div>
+  <div class="icon">{{dismessage}}</div>
   <ion-card>
-    <ion-card-header [color]="isDanger ? 'danger' : 'success'">
+    <ion-card-header [color]="isDanger ? 'danger' : 'success'" [ngStyle]="{ 'background-color': (!senserOn) ? '#bbb' :''}">
       <h1 class="status">Status : {{status}}</h1>
     </ion-card-header>
   </ion-card>

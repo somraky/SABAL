@@ -1,5 +1,11 @@
 import { Component, ViewChild, Output, EventEmitter, OnInit, ElementRef } from '@angular/core';
 import { Storage } from '@ionic/storage';
+import {
+  IMqttMessage,
+  MqttModule,
+  MqttService,
+  IMqttServiceOptions
+} from 'ngx-mqtt';
 
 @Component({
   selector: 'unlocker',
@@ -7,6 +13,7 @@ import { Storage } from '@ionic/storage';
   styleUrls: ['./unlocker.component.scss']
 })
 export class Unlocker implements OnInit {
+  public submessage: string;
   setIntID;
   theRange;
   slideState: boolean;
@@ -16,7 +23,18 @@ export class Unlocker implements OnInit {
   @Output() unlocked: EventEmitter<boolean> = new EventEmitter();
   @ViewChild('unlock') input: any;
 
-  constructor(private elementRef: ElementRef, private storage: Storage) {
+  constructor(private _mqttService: MqttService, private elementRef: ElementRef, private storage: Storage) {
+    this._mqttService.observe('leddoor').subscribe((submessage: IMqttMessage) => {
+      this.submessage = submessage.payload.toString();
+      if (this.submessage == '1') {
+        this.theRange = 100;
+        this.initValue2();
+      }
+      else {
+        this.theRange = 0;
+        this.initValue1();
+      }
+    });
   }
 
   ngOnInit() {

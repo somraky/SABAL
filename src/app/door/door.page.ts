@@ -22,14 +22,24 @@ export class DoorPage implements OnInit {
   unlocked = false;
   agreements: boolean = false;
   checkedDate = [];
+  valueDate = [];
   timeOnValue;
   timeOffValue;
 
   constructor(private _mqttService: MqttService, private storage: Storage, public actionSheetController: ActionSheetController, public alertController: AlertController, public api: RestApiService, public loadingController: LoadingController) {
-    this._mqttService.observe('my/topic').subscribe((submessage: IMqttMessage) => {
+    this._mqttService.observe('leddoor').subscribe((submessage: IMqttMessage) => {
       this.submessage = submessage.payload.toString();
-      console.log(this.submessage);
+      if(this.submessage == '1')
+        this.unlocked = true;
+      else
+        this.unlocked = false;
     });
+  }
+
+  updateAgree(){
+    if(this.agreements == false){
+      
+    }
   }
 
   unlockedHandler(event: boolean) {
@@ -143,6 +153,7 @@ export class DoorPage implements OnInit {
           handler: setdate => {
             var i, j: number;
             console.log(setdate);
+            this.valueDate = setdate;
             for (j = 0; j <= 6; j++) {
               this.checkedDate[j] = false;
             }
@@ -205,16 +216,13 @@ export class DoorPage implements OnInit {
     console.log(Number(this.timeOnValue.substring(3)));
     console.log(Number(this.timeOffValue.substring(0, 2)));
     console.log(Number(this.timeOffValue.substring(3)));
-    //this.chosenHours = Number(time.substring(0, 2));
-    //this.chosenMinutes = Number(time.substring(3));
-    this.sendPostRequest('set-door-on',this.postData);
+    var postOnData = "day=" + this.valueDate + "&hour=" + this.timeOnValue.substring(0, 2) + "&min=" + this.timeOnValue.substring(3);
+    var postOffData = "day=" + this.valueDate + "&hour=" + this.timeOffValue.substring(0, 2) + "&min=" + this.timeOffValue.substring(3);
+    this.sendPostRequest('set-door-on',postOnData);
+    this.sendPostRequest('set-door-off',postOffData);
   }
 
-  postData = {
-    "day": "4",
-    "hour": "22",
-    "min": "58"
-  }
+
   async sendPostRequest(path: string, data) {
     await this.api.postData(path, data)
       .subscribe(res => {
@@ -234,6 +242,9 @@ export class DoorPage implements OnInit {
         if (key == 'agreements') {
           this.agreements = value;
         }
+        if (key == 'valueDate') {
+          this.valueDate = value;
+        }
         if (key == 'checkedDate') {
           this.checkedDate = value;
         }
@@ -251,5 +262,8 @@ export class DoorPage implements OnInit {
     this.storage.set('unlocked', this.unlocked);
     this.storage.set('agreements', this.agreements);
     this.storage.set('checkedDate', this.checkedDate);
+    this.storage.set('valueDate', this.valueDate);
+    this.storage.set('timeOffValue', this.timeOffValue);
+    this.storage.set('timeOnValue', this.timeOnValue);
   }
 }

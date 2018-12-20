@@ -22,15 +22,13 @@
         Light1
         <img *ngIf="!lightvalue[1]" (click)="updatelight(1, true)" src="../../assets/icon/off_light.png" />
         <img *ngIf="lightvalue[1]" (click)="updatelight(1, false)" src="../../assets/icon/on_light.png" />
-        <ion-button *ngIf="!light1value" color="tertiary" size="small" (click)="setOnLight(1)">set on time {{ontime[1]}}</ion-button>
-        <ion-button *ngIf="light1value" color="tertiary" size="small" (click)="setOffLight(1)">set off time {{offtime[1]}}</ion-button>
+        <ion-button color="tertiary" size="small" (click)="setLight(1)">set On/Off time</ion-button>
       </ion-col>
       <ion-col class="col-b-2">
         Light2
         <img *ngIf="!lightvalue[2]" (click)="updatelight(2, true)" src="../../assets/icon/off_light.png" />
         <img *ngIf="lightvalue[2]" (click)="updatelight(2, false)" src="../../assets/icon/on_light.png" />
-        <ion-button *ngIf="!light2value" color="tertiary" size="small" (click)="setOnLight(2)">set on time {{ontime[2]}}</ion-button>
-        <ion-button *ngIf="light2value" color="tertiary" size="small" (click)="setOffLight(2)">set off time {{offtime[2]}}</ion-button>
+        <ion-button color="tertiary" size="small" (click)="setLight(2)">set On/Off time</ion-button>
       </ion-col>
     </ion-row>
     <ion-row>
@@ -38,15 +36,13 @@
         Light3
         <img *ngIf="!lightvalue[3]" (click)="updatelight(3, true)" src="../../assets/icon/off_light.png" />
         <img *ngIf="lightvalue[3]" (click)="updatelight(3, false)" src="../../assets/icon/on_light.png" />
-        <ion-button *ngIf="!light3value" color="tertiary" size="small" (click)="setOnLight(3)">set on time {{ontime[3]}}</ion-button>
-        <ion-button *ngIf="light3value" color="tertiary" size="small" (click)="setOffLight(3)">set off time {{offtime[3]}}</ion-button>
+        <ion-button color="tertiary" size="small" (click)="setLight(3)">set On/Off time</ion-button>
       </ion-col>
       <ion-col class="col-b-4">
         Light4
         <img *ngIf="!lightvalue[4]" (click)="updatelight(4, true)" src="../../assets/icon/off_light.png" />
         <img *ngIf="lightvalue[4]" (click)="updatelight(4, false)" src="../../assets/icon/on_light.png" />
-        <ion-button *ngIf="!light4value" color="tertiary" size="small" (click)="setOnLight(4)">set on time {{ontime[4]}}</ion-button>
-        <ion-button *ngIf="light4value" color="tertiary" size="small" (click)="setOffLight(4)">set off time {{offtime[4]}}</ion-button>
+        <ion-button color="tertiary" size="small" (click)="setLight(4)">set On/Off time</ion-button>
       </ion-col>
     </ion-row>
   </ion-grid>
